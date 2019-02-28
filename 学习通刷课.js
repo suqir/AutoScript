@@ -7,7 +7,7 @@
 */
 
 //启动手机无障碍服务
-auto().waitFor();
+auto.waitFor();
 toast("请在设置中打开本程序的无障碍开关！");
 
 //启动学习通程序
@@ -74,14 +74,13 @@ for (var x = 1; x < 10; x++) {
 			unitList.waitFor();
 
 			var bk = false;
-			for(var j = 1;j <= 20;j++){
+			for(var j = 1;j <= 50;j++){
 				if(text(num).exists()){
 					click(num);
 					toastLog("开始刷" + num);
 					break;
-				}else if (text("已经到底啦~(>_<)~~").className("android.widget.TextView").exists()){
+				}else if (id("tv_part_title").text("阅读").exists()){
 					toastLog("本章结束，开始下一章");
-					scrollable(true).findOnce(1).scrollForward();
 					intZ += 1;
 					intJ = 1;
 					num = intZ.toString() + "." + intJ.toString();
@@ -102,13 +101,10 @@ for (var x = 1; x < 10; x++) {
 			//播放视频
 			waitForActivity("com.chaoxing.fanya.aphone.ui.chapter.KnowledgePagerActivity");
 			while(!click("视频"));
-			sleep(3000);
+			sleep(6000);
+			
 			//点击播放按钮
-			if(bounds(441,724,636,916).exists()){
-				bounds(441,724,636,916).clickable(false).click();
-			}else{
-				click(549,890);
-			}
+			click(549,890);
 			sleep(500);
 
 			//移动网络识别
