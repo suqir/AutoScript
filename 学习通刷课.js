@@ -7,7 +7,7 @@
 */
 
 //启动手机无障碍服务
-auto.waitFor();
+auto();
 toast("请在设置中打开本程序的无障碍开关！");
 
 //启动学习通程序
@@ -42,6 +42,7 @@ if(!packageName){
 className("android.widget.TextView").packageName("com.chaoxing.mobile").waitFor();
 var me = id("tabButton").packageName("com.chaoxing.mobile").className("android.widget.TextView").text("我");
 for (var x = 1; x < 10; x++) {
+	//寻找课程
 	if (me.exists()){
 		click("我");
 		sleep(200);
@@ -73,7 +74,6 @@ for (var x = 1; x < 10; x++) {
 			}
 			unitList.waitFor();
 
-			var bk = false;
 			for(var j = 1;j <= 50;j++){
 				if(text(num).exists()){
 					click(num);
@@ -85,17 +85,10 @@ for (var x = 1; x < 10; x++) {
 					intJ = 1;
 					num = intZ.toString() + "." + intJ.toString();
 					back();
-					var bk = true;
-					break;
 				}else{
 					scrollable(true).findOnce(1).scrollForward();
 					sleep(200);
 				}
-			}
-			if (bk) {
-				break;
-			}else{
-				intJ += 1;
 			}
 
 			//播放视频
@@ -105,7 +98,7 @@ for (var x = 1; x < 10; x++) {
 			
 			//点击播放按钮
 			click(549,890);
-			sleep(500);
+			sleep(1000);
 
 			//移动网络识别
 			if (text("允许").id("btnOk").clickable().className("android.widget.Button"). exists()){
@@ -256,9 +249,10 @@ for (var x = 1; x < 10; x++) {
 				else if (id("chapter_title").exists()) {
 					break;
 				}
+				sleep(1000)
 			}
 			back();
-			sleep(1000)
+			intJ += 1;
 		}
 	}else{
 		if (currentPackage()==("com.chaoxing.mobile")){
