@@ -62,29 +62,33 @@ var ct = id("continue_study_btn").className("android.widget.ImageButton");
 openPic.waitFor();
 		openPic.clickable().click();
 		
-		//调整播放速度
-		var speedX = id("ijk_layout_controller_cover_rate_btn").className("android.widget.TextView");
- while(true){
-   if (text("1.5x").exists()) {
-     toastLog("开启1.5x");
-     	break;
-				}else{
-	  		speedX.clickable().click();
-}
-}
-
 		var closeQs = id("image_close").className("android.widget.ImageView");
 
-		//轮选题目
+		//调整播放速度及轮选题目
 		while(true){
+		  //调整播放速度
+		  var speedX = id("ijk_layout_controller_cover_rate_btn").className("android.widget.TextView");
+
+	  	if (text("1.5x").exists()) {
+      toastLog("开启1.5x");
+				}else{
+				  speedX.clickable().click();
+				}
+		
+		
 			//单选题
 			if (id("left_type").className("android.widget.ImageView").text("单选题")){
-  toastLog("dx");
   
 				click("A");
 				sleep(100);
 
 				click("B");
+				sleep(100);
+				
+				click("C");
+				sleep(100);
+
+				click("D");
 				sleep(100);
 				
 				closeQs.clickable().click();
