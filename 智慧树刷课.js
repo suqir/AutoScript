@@ -23,7 +23,7 @@ if(!packageName){
 
 
 //进入课程
-className("android.widget.TextView").packageName("com.able.wisdomtree").waitFor();
+id("bottom_tv").className("android.widget.TextView").packageName("com.able.wisdomtree").waitFor();
 var study = id("bottom_tv").packageName("com.able.wisdomtree").className("android.widget.TextView").text("学习");
 if (study.exists()){
 	click("学习");
@@ -46,52 +46,48 @@ if (study.exists()){
 
 		//点击继续播放按钮
 		waitForActivity("com.able.wisdomtree.course.course.studycourse.activity.StudyCourseVideoActivity");
-		while(!click(id("continue_study_btn").className("android.widget.ImageButton")));
-
-		//全屏按钮
-		var openPic = id("ijk_layout_controller_cover_screen_btn").className("android.widget.ImageView");
-		waitFor(openPic);
-		click(openPic);
+var ct = id("continue_study_btn").className("android.widget.ImageButton");
+		while(ct.clickable().click());
 		
-		//调整播放速度
-		var speedX = id("ijk_layout_controller_cover_rate_btn")className("android.widget.TextView");
-		if (speedX.exists()) {
-			for (var s = 0; s < 3.length; s++) {
-				if (speedX.text == "1.5x") {
-					break;
-				}
-				click(speedX);
-			}
-		}else{
-			click(id("content").className("android.widget.FrameLayout"));
-		}
-
 		//移动网络识别
-		if (text("正在使用非WI-FI网络，精彩内容不容错过").exists()){
-			click(556,500);
+		var ct_nowifi = id("play").className("android.widget.TextView").text("继续播放");
+		if (ct_nowifi){
+			while(!click("继续播放"));
 			sleep(2000);
 			toastLog("你正在使用移动网络");
 		}
+
+		//全屏按钮
+		var openPic = id("ijk_layout_controller_cover_screen_btn").className("android.widget.ImageView");
+openPic.waitFor();
+		openPic.clickable().click();
+		
+		//调整播放速度
+		var speedX = id("ijk_layout_controller_cover_rate_btn").className("android.widget.TextView");
+ while(true){
+   if (text("1.5x").exists()) {
+     toastLog("开启1.5x");
+     	break;
+				}else{
+	  		speedX.clickable().click();
+}
+}
 
 		var closeQs = id("image_close").className("android.widget.ImageView");
 
 		//轮选题目
 		while(true){
 			//单选题
-			if (id("left_type").text("单选题:").exists()){
+			if (id("left_type").className("android.widget.ImageView").text("单选题")){
+  toastLog("dx");
+  
 				click("A");
 				sleep(100);
 
 				click("B");
 				sleep(100);
 				
-				click("C");
-				sleep(100);
-
-				click("D");
-				sleep(100);
-				
-				click(closeQs);
+				closeQs.clickable().click();
 				toastLog("出现单选题，依次选择后继续观看视频！");
 			}
 
@@ -101,8 +97,8 @@ if (study.exists()){
 	}
 }else{
 	if (currentPackage()==("com.able.wisdomtree")){
-		back()
-		sleep(1000)
+		back();
+		sleep(1000);
 	}else{
 		launchPackage("com.able.wisdomtree");	
 	}
