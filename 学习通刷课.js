@@ -109,7 +109,7 @@ for (var x = 1; x < 10; x++) {
 			}
 
 			//轮选题目
-			while(true){
+			while(sleep(1000)){
 				//判断题
 				if (id("test_tv_title").text("判断题:").exists()){
 					click("A");
