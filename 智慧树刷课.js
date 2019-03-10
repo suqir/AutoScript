@@ -67,10 +67,11 @@ if (study.exists()){
 		}
 
 		//移动网络识别
-		// if (text("允许").id("btnOk").clickable().className("android.widget.Button"). exists()){
-		// 	text("允许").packageName("com.able.wisdomtree").id("btnOk").clickable().className("android.widget.Button").click();
-		// 	toastLog("你正在使用移动网络");
-		// }
+		if (text("正在使用非WI-FI网络，精彩内容不容错过").exists()){
+			click(556,500);
+			sleep(2000);
+			toastLog("你正在使用移动网络");
+		}
 
 		var closeQs = id("image_close").className("android.widget.ImageView");
 
