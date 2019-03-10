@@ -67,32 +67,23 @@ openPic.waitFor();
 		//调整播放速度及轮选题目
 		while(true){
 		  //调整播放速度
-		  var speedX = id("ijk_layout_controller_cover_rate_btn").className("android.widget.TextView");
-
-	  	if (text("1.5x").exists()) {
-      toastLog("开启1.5x");
-				}else{
-				  speedX.clickable().click();
-				}
-		
+    var speedX = id("ijk_layout_controller_cover_rate_btn").className("android.widget.TextView");
+ 	  for(var s=0; s<4; s++){
+ if (text("1.5x").exists()) {
+    toastLog("开启1.5x");
+    break;
+    }else{
+        speedX.clickable().click();
+        }
+		}
 		
 			//单选题
 			if (id("left_type").className("android.widget.ImageView").text("单选题")){
-  
-				click("A");
-				sleep(100);
-
-				click("B");
-				sleep(100);
-				
-				click("C");
-				sleep(100);
-
-				click("D");
+    click("B");
 				sleep(100);
 				
 				closeQs.clickable().click();
-				toastLog("出现单选题，依次选择后继续观看视频！");
+				toastLog("出现单选题，选择B选项后继续观看视频！");
 			}
 
 			//监控屏幕，间隔时间1s
